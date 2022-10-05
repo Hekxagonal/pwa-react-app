@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import './App.css';
 
@@ -28,7 +29,24 @@ function App() {
   }
 
   const handleSync = () => {
-    console.log(JSON.parse(localStorage.getItem('table') || ''));
+    const localTable = JSON.parse(localStorage.getItem('table') || '[]')
+
+    console.log(localTable);
+
+    const instance = axios.create({
+      baseURL: 'http://localhost:3500/',
+      timeout: 1000,
+      headers: {'X-Custom-Header': 'foobar'}
+    });
+
+    instance.post('/console', localTable)
+    .then(function (response) {
+      console.log('then ', response);
+    })
+    .catch(function (error) {
+      console.log('catch ', error);
+    });
+
   }
 
   useEffect(() => {
