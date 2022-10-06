@@ -3,11 +3,11 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './App.css';
 
-function App() {
-  const navigate = useNavigate()
+function TestPage() {
   const [SwSupport, setSwSupport] = useState(false);
   const [IdbSupport, setIdbSupport] = useState(false);
   const [inputValue, setInputValue] = useState('');
+  const navigate = useNavigate();
   const [tableValues, setTableValues] = useState<string[]>(() => {
     const localTable = localStorage.getItem('table');
     
@@ -71,7 +71,7 @@ function App() {
         <button onClick={handleConfirm} disabled={formState}>Inserir</button>
         <button onClick={handleClear} disabled={formState}>Limpar</button>
         <button onClick={handleSync} disabled={formState}>Sincronizar</button>
-        <button onClick={() => navigate('/test')}>Teste</button>
+        <button onClick={() => navigate('/')}>App</button>
         <table>
           <thead>
             <tr>
@@ -88,4 +88,4 @@ function App() {
   );
 }
 
-export default App;
+export default TestPage;
